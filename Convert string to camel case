@@ -1,45 +1,45 @@
-function toCamelCase($str){
-  if ($str == null) {
-    return $str;
-  }
-   
+<?php
+	function toCamelCase($str){
+	  if ($str == null) {
+	    return $str;
+	  }
+	   
 	//Initialize output string
 	$output = '';
-  
-  //Split the string into words using non-letter characters
-  $wordsArray = preg_split('/[^a-zA-Z]/', $str);
-  
-  //Check if the generated phrase will be an Acronym
-  $isAcronym = true;
-  
-  foreach ($wordsArray as $word) {
-    if( !(strlen($word) == 1 and ctype_upper($word)) ) {
-      $isAcronym = false;
-      break;
-    }
-  }
-  
-  if($isAcronym) {
-    return strtoupper(implode("", $wordsArray));
-  }
-  
-  //Checks if the $wordsArray only contain one word or if the first string contains only one letter
-  if(count($wordsArray) === 1 /*or strlen($wordsArray[0]) === 1*/) {
-    //return ucwords(implode("", $wordsArray));
-    
-    for ($i = 0; $i < count($wordsArray); $i++) {
-      $output .= ucfirst($wordsArray[$i]);
-    }
-  }
-  else {
-    //Add the first word in the $output string with a lowercase first character
-    $output .= lcfirst($wordsArray[0]);
-
-    //Loop through the rest of the words
-    for ($i = 1; $i < count($wordsArray); $i++) {
-      $output .= ucfirst($wordsArray[$i]);
-    }
-  }
-  
-  return $output;
+	  
+	//Split the string into words using non-letter characters
+	$wordsArray = preg_split('/[^a-zA-Z]/', $str);
+	  
+	//Check if the generated phrase will be an Acronym
+	$isAcronym = true;
+	  
+	foreach ($wordsArray as $word) {
+	  if( !(strlen($word) == 1 and ctype_upper($word)) ) {
+	    $isAcronym = false;
+	    break;
+	  }
+	}
+	  
+	if($isAcronym) {
+	  return strtoupper(implode("", $wordsArray));
+	}
+	  
+	//Checks if the $wordsArray only contain one word or if the first string contains only one letter
+	if(count($wordsArray) === 1 /*or strlen($wordsArray[0]) === 1*/) {
+	  //return ucwords(implode("", $wordsArray));
+	    
+	  for ($i = 0; $i < count($wordsArray); $i++) {
+	    $output .= ucfirst($wordsArray[$i]);
+	  }
+	}
+	else {
+	  //Add the first word in the $output string with a lowercase first character
+	  $output .= lcfirst($wordsArray[0]);
+	  //Loop through the rest of the words
+	  for ($i = 1; $i < count($wordsArray); $i++) {
+	    $output .= ucfirst($wordsArray[$i]);
+	  }
+	}
+	  
+	return $output;
 }
